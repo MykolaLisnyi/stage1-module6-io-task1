@@ -1,6 +1,7 @@
 package com.epam.mjc.io;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
@@ -16,14 +17,16 @@ public class FileReader {
                 stringBuilder.append((char) ch);
             }
             StringTokenizer data = new StringTokenizer(stringBuilder.toString()
-                    .replaceAll("Name:", " ")
-                    .replaceAll("Age:", " ")
-                    .replaceAll("Email:", " ")
-                    .replaceAll("Phone:", " "));
+                    .replace("Name:", " ")
+                    .replace("Age:", " ")
+                    .replace("Email:", " ")
+                    .replace("Phone:", " "));
             profile.setName(data.nextToken());
             profile.setAge(Integer.parseInt(data.nextToken()));
             profile.setEmail(data.nextToken());
             profile.setPhone(Long.parseLong(data.nextToken()));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
