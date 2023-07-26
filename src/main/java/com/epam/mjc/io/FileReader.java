@@ -26,9 +26,9 @@ public class FileReader {
             profile.setEmail(data.nextToken());
             profile.setPhone(Long.parseLong(data.nextToken()));
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("FileNotFoundException", e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("IOException", e);
         }
 
         return profile;
